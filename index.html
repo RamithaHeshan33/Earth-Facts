@@ -37,12 +37,28 @@
             background-color: #e9ecef;
             border-radius: 5px;
         }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
     <div id="app">
         <h1>Facts About Planet Earth</h1>
         <ul id="facts-list"></ul>
+        <button id="replace-facts">Replace Facts</button>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -60,12 +76,24 @@
             ];
 
             const factsList = document.getElementById('facts-list');
+            const replaceButton = document.getElementById('replace-facts');
 
-            facts.forEach(fact => {
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `<strong>${fact.fact}:</strong> ${fact.description}`;
-                factsList.appendChild(listItem);
+            function displayFacts() {
+                factsList.innerHTML = '';
+                facts.forEach(fact => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `<strong>${fact.fact}:</strong> ${fact.description}`;
+                    factsList.appendChild(listItem);
+                });
+            }
+
+            replaceButton.addEventListener('click', () => {
+                // Replace the facts with new ones or shuffle the existing ones
+                facts.reverse(); // Example: reversing the array for demonstration
+                displayFacts();
             });
+
+            displayFacts();
         });
     </script>
 </body>
